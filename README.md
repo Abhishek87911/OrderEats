@@ -15,3 +15,7 @@
 - To host your app on HTTPS
 - Tree Shaking -- remove unused code for you
 - Different dev and prod bundles beacause prod build take little morre time
+
+# Problems faced
+- swiggy api two diffrent api structure for restaurant menu 
+- working with live api is hard

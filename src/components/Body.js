@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import resList from "../utils/mockData";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const Body = () => {
     // local state variable
@@ -15,7 +16,7 @@ const Body = () => {
 
     const fetchData = async () => {
         const data = await fetch(
-        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=29.94755&lng=76.8227094&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+        "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
 
         const json = await data.json();
         //optional chaining
@@ -47,10 +48,10 @@ const Body = () => {
              className="filter-btn" 
              onClick={()=>{
                //filter logic
-              const filterList = listOfRestaurant.filter(
-                (res) => res.info.avgRating > 4
+              const filteredRestaurant = listOfRestaurant.filter(
+                (res) => res.info.avgRating > 4.3
               );
-              setlistOfRestaurant(filterList);
+              setfilteredRestaurant(filteredRestaurant);
                
             }}
             >
@@ -61,7 +62,12 @@ const Body = () => {
           <div className="res-container">
   
             {
-              filteredRestaurant.map((restaurant,index) => <RestaurantCard key = {restaurant.info.id} resData={restaurant}/>)
+              filteredRestaurant.map((restaurant,index) => 
+              <Link 
+              key = {restaurant.info.id}  
+              to={"/restaurants/"+restaurant.info.id}>
+              <RestaurantCard resData={restaurant}/>
+              </Link>)
             }
           </div>
       </div>
