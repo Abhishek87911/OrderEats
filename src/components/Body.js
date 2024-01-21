@@ -1,8 +1,8 @@
 import RestaurantCard from "./RestaurantCard";
-import resList from "../utils/mockData";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
+import useOnlineStatus from "../utils/useOnlineStatus";
 
 const Body = () => {
     // local state variable
@@ -23,6 +23,18 @@ const Body = () => {
         setlistOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants)
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants)
     };
+    
+    const onlineStatus = useOnlineStatus();
+
+    if(onlineStatus === false) 
+     return (
+      <h1>Looks.. Like you are offline!!.. Please Check your Internet Connection.
+
+      </h1>
+    );
+
+
+
 
     // Conditional Rendering
     return listOfRestaurant.length === 0 ? ( <Shimmer /> ) : (
