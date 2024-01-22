@@ -1,4 +1,4 @@
-import RestaurantCard from "./RestaurantCard";
+import RestaurantCard , { withPromotedLabel } from "./RestaurantCard";
 import { useState,useEffect } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
@@ -8,10 +8,12 @@ const Body = () => {
     // local state variable
     const [listOfRestaurant,setlistOfRestaurant] = useState([]);
     const [filteredRestaurant,setfilteredRestaurant] = useState([]);
-    const [searchText,setsearchText] = useState([]);
+    const [searchText,setsearchText] = useState("");
     useEffect(()=>{
     fetchData("");
     },[]);
+
+    const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
     console.log(listOfRestaurant);
 
 
@@ -25,6 +27,7 @@ const Body = () => {
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants)
     };
     
+  
     const onlineStatus = useOnlineStatus();
 
     if(onlineStatus === false) 
@@ -38,7 +41,8 @@ const Body = () => {
 
 
     // Conditional Rendering
-    return listOfRestaurant.length === 0 ? ( <Shimmer /> ) : (
+    if(listOfRestaurant.length === 0) return <Shimmer />
+    return  (
       <div className="body">
           <div className="filter flex">
             <div className="search m-4 p-4">
@@ -75,20 +79,29 @@ const Body = () => {
             
 
           </div>
-          <div className="flex flex-wrap content-center">
+          <div className="flex flex-wrap m-auto">
   
             {
               filteredRestaurant.map((restaurant,index) => 
               <Link 
               key = {restaurant.info.id}  
               to={"/restaurants/"+restaurant.info.id}>
-              <RestaurantCard resData={restaurant}/>
+             
+              {
+                (restaurant.info.totalRatingsString === "5K+") ? (
+                  <RestaurantCardPromoted resData = {restaurant} /> 
+                ):(
+                  <RestaurantCard resData = {restaurant} />
+                )
+              }
               </Link>)
             }
           </div>
       </div>
+
     );
-    
+   
   };
+  
 
 export default Body;
