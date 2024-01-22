@@ -12,6 +12,7 @@ const Body = () => {
     useEffect(()=>{
     fetchData("");
     },[]);
+    console.log(listOfRestaurant);
 
 
     const fetchData = async () => {
@@ -39,14 +40,15 @@ const Body = () => {
     // Conditional Rendering
     return listOfRestaurant.length === 0 ? ( <Shimmer /> ) : (
       <div className="body">
-          <div className="filter">
-            <div className="search">
-              <input type="text" className="search-box" value = {searchText} onChange={(e)=>{
+          <div className="filter flex">
+            <div className="search m-4 p-4">
+              <input type="text" className="border border-solid border-black" value = {searchText} onChange={(e)=>{
                 setsearchText(e.target.value);
               }}
               />
 
-              <button onClick={()=>{
+              <button className="px-4 py-2 bg-green-100 m-4 rounded-lg" 
+              onClick={()=>{
                 // Filter the restaurant and update UI
                 // search text
                const filteredRestaurant = listOfRestaurant.filter(
@@ -56,8 +58,9 @@ const Body = () => {
 
               }}>Search</button>
             </div>
-            <button
-             className="filter-btn" 
+            <div className="search m-4 p-4 flex items-center">
+              <button
+             className="px-4 py-2 bg-gray-100 rounded-lg" 
              onClick={()=>{
                //filter logic
               const filteredRestaurant = listOfRestaurant.filter(
@@ -68,10 +71,11 @@ const Body = () => {
             }}
             >
                 Top Rated Restaurant
-            </button>
+            </button></div>
+            
 
           </div>
-          <div className="res-container">
+          <div className="flex flex-wrap content-center">
   
             {
               filteredRestaurant.map((restaurant,index) => 
