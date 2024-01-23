@@ -1,16 +1,16 @@
 import { useDispatch } from "react-redux";
-import { addItems } from "../utils/cartSlice";
+import { addItems, removeItems } from "../utils/cartSlice";
 
 // import { CDN_URL } from "../utils/constants";
 const CDN_URL = "https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/";
 
 
-const ItemList = ({items}) => {
+const CartItemList = ({items}) => {
 
     const dispactch = useDispatch();
     const handleAddItem = (item) => {
         //Dispactch an action
-       dispactch(addItems(item));
+       dispactch(removeItems(item));
     };
  
 return (
@@ -29,8 +29,10 @@ return (
                 </p>
                 </div>
                 <div className="w-3/12">
-                <div className="absolute  ">
-                <button className="p-2 bg-black text-white shadow-lg  rounded-lg hover:bg-gray-700 " onClick={() => handleAddItem(item)}>ADD+</button>
+                <div className="absolute">
+                {/* <button className="p-2 bg-black text-white shadow-lg  rounded-lg hover:bg-gray-700 " onClick={() => handleAddItem(item)}>ADD+</button> */}
+                <button className="p-2 bg-black text-white shadow-lg  rounded-lg hover:bg-gray-700 " onClick={() => handleAddItem(item)}>REMOVE-</button>
+
                 </div>
                
                 <img src={CDN_URL+item.card.info.imageId} alt="IMG" className="w-full" />
@@ -41,4 +43,4 @@ return (
 )
 }
 
-export default ItemList;
+export default CartItemList;

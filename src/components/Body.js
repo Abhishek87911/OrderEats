@@ -14,8 +14,7 @@ const Body = () => {
     },[]);
 
     const RestaurantCardPromoted = withPromotedLabel(RestaurantCard);
-    console.log(listOfRestaurant);
-
+   
 
     const fetchData = async () => {
         const data = await fetch(
@@ -46,7 +45,7 @@ const Body = () => {
       <div className="body">
           <div className="filter flex">
             <div className="search m-4 p-4">
-              <input type="text" className="border border-solid border-black" value = {searchText} onChange={(e)=>{
+              <input type="text" className="border border-solid border-black p-2 rounded-lg" value = {searchText} onChange={(e)=>{
                 setsearchText(e.target.value);
               }}
               />
