@@ -40,7 +40,9 @@ const categories = (resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
 
       {categories.map((category,index)=>(
         // controlled componenet
+       
       <RestaurantCategory key = {category?.card?.card?.title} data = {category?.card?.card}
+      
       showItems={index == showIndex && !false}
       setshowIndex={()=>setshowIndex(index)}
       />))}
