@@ -58,7 +58,7 @@ const Body = () => {
                 (res) => res.info.name.toLowerCase().includes(searchText.toLowerCase())
                 );
                setfilteredRestaurant(filteredRestaurant);
-
+             
               }}>Search</button>
             </div>
             <div className="search m-4 p-4 flex items-center">
@@ -78,29 +78,28 @@ const Body = () => {
             
 
           </div>
+          
           <div className="flex flex-wrap m-auto">
-  
-            {
-              filteredRestaurant.map((restaurant,index) => 
-              <Link 
-              key = {restaurant.info.id}  
-              to={"/restaurants/"+restaurant.info.id}>
-             
-              {
-                (restaurant.info.totalRatingsString === "5K+") ? (
-                  <RestaurantCardPromoted resData = {restaurant} /> 
-                ):(
-                  <RestaurantCard resData = {restaurant} />
-                )
-              }
-              </Link>)
-            }
-          </div>
-      </div>
-
+                {filteredRestaurant.length === 0 ? (
+                 <div className="w-full flex items-center justify-center">
+                 <p className="text-red-500 font-bold shadow-lg">Item does not match with anyone.</p>
+                 </div>                ) : (
+                    filteredRestaurant.map((restaurant, index) => (
+                        <Link 
+                            key={restaurant.info.id}  
+                            to={"/restaurants/" + restaurant.info.id}
+                        >
+                            {restaurant.info.totalRatingsString === "5K+" ? (
+                                <RestaurantCardPromoted resData={restaurant} /> 
+                            ) : (
+                                <RestaurantCard resData={restaurant} />
+                            )}
+                        </Link>
+                    ))
+                )}
+            </div>
+        </div>
     );
-   
-  };
-  
+};
 
-export default Body;
+export default Body
