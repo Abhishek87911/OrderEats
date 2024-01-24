@@ -17,13 +17,20 @@ const Body = () => {
    
 
     const fetchData = async () => {
+       try{
         const data = await fetch(
         "https://thingproxy.freeboard.io/fetch/https://www.swiggy.com/dapi/restaurants/list/v5?lat=28.7040592&lng=77.10249019999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
-
+       
+ 
         const json = await data.json();
         //optional chaining
         setlistOfRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants)
         setfilteredRestaurant(json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle.restaurants)
+       } catch (error) {
+        // Handle the error and set an error state or display a message
+        console.error("Error fetching data:", error.message);
+        
+    }
     };
     
   
