@@ -96,7 +96,7 @@ const Body = () => {
                             key={restaurant.info.id}  
                             to={"/restaurants/" + restaurant.info.id}
                         >
-                            {restaurant.info.totalRatingsString === "5K+" ? (
+                            {restaurant.info.totalRatingsString === "1K+" ? (
                                 <RestaurantCardPromoted resData={restaurant} /> 
                             ) : (
                                 <RestaurantCard resData={restaurant} />
