@@ -86,7 +86,7 @@ const Body = () => {
 
           </div>
           
-          <div className="flex flex-wrap m-auto">
+          <div className="flex flex-wrap m-auto mb-8">
                 {filteredRestaurant.length === 0 ? (
                  <div className="w-full flex items-center justify-center">
                  <p className="text-red-500 font-bold shadow-lg">Item does not match with anyone.</p>

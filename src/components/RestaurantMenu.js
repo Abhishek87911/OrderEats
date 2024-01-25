@@ -28,7 +28,7 @@ const categories = (resInfo?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards
 
  
   return (
-    <div>
+    <div className="mb-14">
       <div className="text-center">
         <h1 className="font-bold my-6 text-2xl">{name}</h1>
         <p className="font-bold text-lg">
