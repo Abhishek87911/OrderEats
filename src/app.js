@@ -36,7 +36,7 @@ useEffect(()=>{
 
   //dummy data
   const data = {
-    name: "Abhishek Gupta",
+    name: "OrderEats",
   }
   setUserName(data.name);
 },[]);
